@@ -18,4 +18,14 @@ Die Roboter wechseln sich ab, um den Spieler jeweils in einem kurzen Abschnitt e
 Anschließend wird getestet, ob und wie sich diese Unterschiede auf das Lernverhalten, Erinnerung und Akzeptanz auswirken. Im Fokus steht der Vergleich von Reaktionen des Charakters.
 Dies kann über eine kurze Wissens- oder Meinungsabfrage innerhalb der Anwendung geschehen.
 
+**Zeitplan**
+
+| **Meilenstein** | **Frist**  | **Aufgaben** |
+|-------------|--------|----------|
+| 1           | 30.04  | **Alle**<br>- Konzept und zusammenfassende Präsentation erstellen<br>- Git-Repository anlegen (AVR2025-Plausibilitaetsillusion)<br>- Erste Commits der Teammitglieder |
+| 2           | 07.05  | **Alle**<br>- Verbindung mit der Quest ermöglichen<br>- Thema und passende Interaktionen/Objekte auswählen<br>- Skript mit exakten Texten, Interaktionen und Ablauf erstellen<br><br>**RoxiBu**<br>- Projekt in Unity anlegen und grobe Szene erstellen |
+| 3           | 04.06  | **RoxiBu**<br>- 3D-Modellierung und Animation erstellen<br>- Programmierung<br><br>**panieldeschel**<br>- Soundeffekte raussuchen<br>- Audio erstellen und managen<br><br>**maikbartelsII**<br>- Programmierung<br><br>**pia659**<br>- Programmierung<br>- 3D-Modellierung und Animation erstellen |
+| 4           | 25.06  | **Alle**<br>- Programmierung ergänzen und verbessern |
+| 5           | 06.07  | **Alle**<br>- Testen & verbessern<br>- Abschlusspräsentation |
+
 
