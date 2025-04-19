@@ -22,7 +22,7 @@ Dies kann über eine kurze Wissens- oder Meinungsabfrage innerhalb der Anwendung
 
 | **Meilenstein** | **Frist**  | **Aufgaben** |
 |-------------|--------|----------|
-| 1           | 30.04  | **Alle**<br>- Konzept und zusammenfassende Präsentation erstellen<br>- Git-Repository anlegen (AVR2025-Plausibilitaetsillusion)<br>- Erste Commits der Teammitglieder |
+| 1           | 30.04  | **Alle**<br>- Konzept erstellen<br>- Git-Repository anlegen (AVR2025-Plausibilitaetsillusion)<br>- Erste Commits der Teammitglieder <br><br> **maikbartelsII**<br>- Zusammenfassende Präsentation erstellen|
 | 2           | 07.05  | **Alle**<br>- Verbindung mit der Quest ermöglichen<br>- Thema und passende Interaktionen/Objekte auswählen<br>- Skript mit exakten Texten, Interaktionen und Ablauf erstellen<br><br>**RoxiBu**<br>- Projekt in Unity anlegen und grobe Szene erstellen |
 | 3           | 04.06  | **RoxiBu**<br>- 3D-Modellierung und Animation erstellen<br>- Programmierung<br><br>**panieldeschel**<br>- Soundeffekte raussuchen<br>- Audio erstellen und managen<br><br>**maikbartelsII**<br>- Programmierung<br><br>**pia659**<br>- Programmierung<br>- 3D-Modellierung und Animation erstellen |
 | 4           | 25.06  | **Alle**<br>- Programmierung ergänzen und verbessern |
