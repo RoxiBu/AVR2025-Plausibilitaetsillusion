@@ -1,10 +1,30 @@
-# Plausibilitätsillusion
+# Konzeptentwurf Plausibilitätsillusion
 
-Wie wirkt sich plausibles Verhalten eines virtuellen Charakters (z. B. Blickkontakt, Reaktionsfähigkeit) auf die Präsenz im Raum, das Verständnis und Behalten von Inhalten in einer VR-Anwendung aus?
+### Thema und Forschungsfrage
+Wie wirkt sich plausibles Verhalten eines virtuellen Charakters (z. B. Blickkontakt, Reaktionsfähigkeit) auf die wahrgenommene Präsenz im Raum, das Verständnis und Behalten von Inhalten in einer VR-Anwendung aus?
 
-Zwei Versionen von dem Roboter **Karlchen** werden erstellt:  
-Mit **Plausibilität** (reagiert auf Gesten, Blickkontakt, spricht Nutzer direkt an)  
-Ohne **Plausibilität** (statische Figur, reagiert nur durch Klick auf einen Button)
+
+### Interaktionskonzept
+<img style="width: 300px;" src="./Grafik_Karlchen.png"> <br>
+<sub>Konzeptgrafik Roboter von pia659</sub>
+
+Im Rahmen dieses Projekts wird untersucht, wie sich das Verhalten virtueller Charaktere auf die Wirkung von VR-Inhalten auswirkt, insbesondere im Hinblick auf Lernprozesse und Nutzererleben. Dazu wird eine VR-Anwendung entwickelt, in der der virtuelle Roboter „Karlchen“ den Nutzer durch kurze Lerneinheiten führt.
+
+Es werden zwei Versionen von Karlchen erstellt, die sich im Grad ihrer Verhaltensplausibilität unterscheiden:
+
+1. Karlchen mit plausiblen Verhaltensweisen:
+Diese Version interagiert aktiv mit dem Nutzer. Sie nimmt Blickkontakt auf, reagiert auf Gesten und spricht den Nutzer direkt an. Ziel ist es, eine möglichst natürliche und glaubwürdige soziale Interaktion zu simulieren.
+
+2. Karlchen ohne plausibles Verhalten:
+In dieser Variante bleibt der Roboter statisch. Er führt keine aktiven Interaktionen mit dem Nutzer durch und gibt Informationen lediglich nach einem Buttonklick weiter. Es findet kein erkennbares soziales Verhalten statt.
+
+Die beiden Roboter wechseln sich in kurzen Sequenzen innerhalb der VR-Anwendung ab. 
+Am Ende folgt eine kurze Abfrage – entweder in Form eines kleinen Wissenstests oder einer Meinungsabfrage – um zu erfassen, wie sich die Unterschiede im Verhalten der Charaktere auf das Verständnis, die Erinnerung sowie die wahrgenommene Präsenz im virtuellen Raum auswirken.
+
+Das Ziel ist es, herauszufinden, ob und in welchem Ausmaß die Plausibilität virtueller Charaktere das Lernerlebnis und die Präsenz in einer VR-Umgebung beeinflusst.
+
+Die Tabelle zeigt die Merkmale der beiden Roboter:
+
 
 | **Merkmal**             | **Hohe Plausibilität**                                                                                                                                                                                                                                                                                                                           | **Geringe Plausibilität**                                                                                                                           |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -13,19 +33,13 @@ Ohne **Plausibilität** (statische Figur, reagiert nur durch Klick auf einen But
 | Raum-verhalten          | Der Roboter läuft oder schwebt durch den Raum und zeigt auf Objekte, von denen er spricht.<br/>Er spricht den Spieler direkt an.                                                                                                                                                                                                                 | Der Roboter bleibt ortsgebunden oder teleportiert sich.<br/>Er spricht vom Spieler in dritter Person.                                               |
 | Präsenz                 | Der Roboter baut Beziehungen mit dem Nutzer auf, merkt sich den Verlauf der Geschehnisse und lobt ausgeführte Aktionen.                                                                                                                                                                                                                          | Der Roboter geht strikt zum nächsten Thema über.                                                                                                    |
 
-Die Roboter wechseln sich ab, um den Spieler jeweils in einem kurzen Abschnitt etwas zu zeigen oder zu erklären.
 
-Anschließend wird getestet, ob und wie sich diese Unterschiede auf das Lernverhalten, Erinnerung und Akzeptanz auswirken. Im Fokus steht der Vergleich von Reaktionen des Charakters.
-Dies kann über eine kurze Wissens- oder Meinungsabfrage innerhalb der Anwendung geschehen.
+# Zeitplan
 
-**Zeitplan**
-
-| **Meilenstein** | **Frist**  | **Aufgaben** |
+| **Meilenstein** | **Frist**  | **Ziele & Aufgaben** |
 |-------------|--------|----------|
-| 1           | 30.04  | **Alle**<br>- Konzept erstellen<br>- Git-Repository anlegen (AVR2025-Plausibilitaetsillusion)<br>- Erste Commits der Teammitglieder <br><br> **maikbartelsII**<br>- Zusammenfassende Präsentation erstellen|
-| 2           | 07.05  | **Alle**<br>- Verbindung mit der Quest ermöglichen<br>- Thema und passende Interaktionen/Objekte auswählen<br>- Skript mit exakten Texten, Interaktionen und Ablauf erstellen<br><br>**RoxiBu**<br>- Projekt in Unity anlegen und grobe Szene erstellen |
-| 3           | 04.06  | **RoxiBu**<br>- 3D-Modellierung und Animation erstellen<br>- Programmierung<br><br>**panieldeschel**<br>- Soundeffekte raussuchen<br>- Audio erstellen und managen<br><br>**maikbartelsII**<br>- Programmierung<br><br>**pia659**<br>- Programmierung<br>- 3D-Modellierung und Animation erstellen |
-| 4           | 25.06  | **Alle**<br>- Programmierung ergänzen und verbessern |
-| 5           | 06.07  | **Alle**<br>- Testen & verbessern<br>- Abschlusspräsentation |
-
-
+| 1           | 30.04  | **Ziel**<br>Bestehende Grundlagen und ausgearbeitetes Konzept<br><br>**Alle**<br>- Konzept erstellen<br>- Git-Repository anlegen (AVR2025-Plausibilitaetsillusion)<br>- Erste Commits der Teammitglieder <br><br> **maikbartelsII**<br>- Zusammenfassende Präsentation erstellen|
+| 2           | 07.05  | **Ziel**<br>Technische Basis und Skript der Anwendung<br><br>**Alle**<br>- Verbindung mit der Quest ermöglichen<br>- Thema und passende Interaktionen/Objekte auswählen<br>- Skript mit exakten Texten, Interaktionen und Ablauf erstellen<br>- Detailliertes Ablaufdiagramm mit den definierten Interaktionsmöglichkeiten erstellen<br><br>**RoxiBu**<br>- Projekt in Unity anlegen und grobe Szene erstellen |
+| 3           | 04.06  | **Ziel**<br>Funktionstüchtige VR-Anwendung nach erstelltem Skript<br><br>**RoxiBu**<br>- Roboter 3D-Modellierung, Assets und Animationen erstellen<br>- Roboter Mimik & Gestik programmieren<br><br>**pia659**<br>- Gegenstände und Raum modellieren<br>- Gegenstände und Interaktionsmöglichkeiten programmieren<br><br>**panieldeschel**<br>- Roboter Tonspuren, Umgebungs- und Gegenstandsgeräusche erstellen & einbinden<br>- Anwendungsverlauf und -logik programmieren<br><br>**maikbartelsII**<br>- Roboter Logik, Gestik & Verhalten programmieren<br>- Szenen programmieren |
+| 4           | 25.06  | **Ziel**<br>Vervollständigte und erweiterte Anwendungslogik<br><br>**Alle**<br>- Programmierung ergänzen und verbessern |
+| 5           | 06.07  | **Ziel**<br>Fertiggestelltes Projekt<br><br>**Alle**<br>- Testen & verbessern<br>- Abschlusspräsentation |
