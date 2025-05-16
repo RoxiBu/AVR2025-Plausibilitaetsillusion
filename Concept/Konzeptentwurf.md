@@ -1,7 +1,7 @@
 # Konzeptentwurf Plausibilitätsillusion
 
 ### Thema und Forschungsfrage
-Wie wirkt sich plausibles Verhalten eines virtuellen Charakters (z. B. Blickkontakt, Reaktionsfähigkeit) auf die wahrgenommene Präsenz im Raum, das Verständnis und Behalten von Inhalten in einer VR-Anwendung aus?
+Wie wirkt sich plausibles Verhalten eines virtuellen Charakters (z. B. Blickkontakt, Reaktionsfähigkeit) auf die wahrgenommene Präsenz im Raum in einer VR-Anwendung aus?
 
 
 ### Interaktionskonzept
@@ -19,9 +19,9 @@ Diese Version interagiert aktiv mit dem Nutzer. Sie nimmt Blickkontakt auf, reag
 In dieser Variante bleibt der Roboter statisch. Er führt keine aktiven Interaktionen mit dem Nutzer durch und gibt Informationen lediglich nach einem Buttonklick weiter. Es findet kein erkennbares soziales Verhalten statt.
 
 Die beiden Roboter wechseln sich in kurzen Sequenzen innerhalb der VR-Anwendung ab. 
-Am Ende folgt eine kurze Abfrage – entweder in Form eines kleinen Wissenstests oder einer Meinungsabfrage – um zu erfassen, wie sich die Unterschiede im Verhalten der Charaktere auf das Verständnis, die Erinnerung sowie die wahrgenommene Präsenz im virtuellen Raum auswirken.
+Am Ende folgt eine kurze Abfrage – in Form einer Meinungsabfrage – um zu erfassen, wie sich die Unterschiede im Verhalten der Charaktere auf die wahrgenommene Präsenz im virtuellen Raum auswirken.
 
-Das Ziel ist es, herauszufinden, ob und in welchem Ausmaß die Plausibilität virtueller Charaktere das Lernerlebnis und die Präsenz in einer VR-Umgebung beeinflusst.
+Das Ziel ist es, herauszufinden, ob und in welchem Ausmaß die Plausibilität virtueller Charaktere die Präsenz in einer VR-Umgebung beeinflusst.
 
 Die Tabelle zeigt die Merkmale der beiden Roboter:
 
