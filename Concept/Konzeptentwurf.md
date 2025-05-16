@@ -8,7 +8,7 @@ Wie wirkt sich plausibles Verhalten eines virtuellen Charakters (z. B. Blickko
 <img style="width: 300px;" src="./Grafik_Karlchen.png"> <br>
 <sub>Konzeptgrafik Roboter von pia659</sub>
 
-Im Rahmen dieses Projekts wird untersucht, wie sich das Verhalten virtueller Charaktere auf die Wirkung von VR-Inhalten auswirkt, insbesondere im Hinblick auf Lernprozesse und Nutzererleben. Dazu wird eine VR-Anwendung entwickelt, in der der virtuelle Roboter „Karlchen“ den Nutzer durch kurze Lerneinheiten führt.
+Im Rahmen dieses Projekts wird untersucht, wie sich das Verhalten virtueller Charaktere auf die Wirkung von VR-Inhalten auswirkt, insbesondere im Hinblick auf das Nutzererleben. Dazu wird eine VR-Anwendung entwickelt, in der der virtuelle Roboter „Karlchen“ den Nutzer durch kurze Lerneinheiten führt.
 
 Es werden zwei Versionen von Karlchen erstellt, die sich im Grad ihrer Verhaltensplausibilität unterscheiden:
 
