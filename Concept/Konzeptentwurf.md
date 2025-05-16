@@ -19,7 +19,7 @@ Diese Version interagiert aktiv mit dem Nutzer. Sie nimmt Blickkontakt auf, reag
 In dieser Variante bleibt der Roboter statisch. Er führt keine aktiven Interaktionen mit dem Nutzer durch und gibt Informationen lediglich nach einem Buttonklick weiter. Es findet kein erkennbares soziales Verhalten statt.
 
 Die beiden Roboter wechseln sich in kurzen Sequenzen innerhalb der VR-Anwendung ab. 
-Am Ende folgt eine kurze Abfrage – in Form einer Meinungsabfrage – um zu erfassen, wie sich die Unterschiede im Verhalten der Charaktere auf die wahrgenommene Präsenz im virtuellen Raum auswirken.
+Am Ende folgt eine kurze Meinungsabfrage, um zu erfassen, wie sich die Unterschiede im Verhalten der Charaktere auf die wahrgenommene Präsenz im virtuellen Raum auswirken.
 
 Das Ziel ist es, herauszufinden, ob und in welchem Ausmaß die Plausibilität virtueller Charaktere die Präsenz in einer VR-Umgebung beeinflusst.
 
