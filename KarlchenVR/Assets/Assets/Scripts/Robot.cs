@@ -36,25 +36,26 @@ public class Robot : MonoBehaviour
         switch (pos)
         {
             case RobotPosition.hiddenInHallway:
-                return Vector3.zero;
+                return new Vector3(-4.36f, 1.36f, 15.0f);
             case RobotPosition.atBioTonne:
-                return new Vector3(-1, 1, 0);
+                return new Vector3(0.33f, 1.32f, 1.7f);
             case RobotPosition.atTechnoTonne:
-                return new Vector3(1, 1, 0);
+                return new Vector3(0.88f, 1.3f, 1.61f);
             case RobotPosition.atZeitRaumTonne:
-                return new Vector3(-1, -1, 0);
+                return new Vector3(1.45f, 1.25f, 1.54f);
             case RobotPosition.inTheBack:
-                return new Vector3(1, -1, 0);
+                return new Vector3(1.0f, 1.15f, 7.11f);
             case RobotPosition.center:
-                return new Vector3(0, 0, 0);
+                return new Vector3(0.35f, 1.44f, 4.77f);
             default:
                 return Vector3.zero;
         }
     }
 
-    public void setPosition(RobotPosition new_pos)
+    public void moveTo(RobotPosition new_pos, bool new_lookingAtPlayer)
     {
         pos = new_pos;
+        lookingAtPlayer = new_lookingAtPlayer;
 
         if (behave == Behaviour.not_plausible)
         {
@@ -68,8 +69,8 @@ public class Robot : MonoBehaviour
         }
     }
 
-    private RobotPosition pos = RobotPosition.hiddenInHallway;
-
+    private RobotPosition pos = RobotPosition.center;
+    bool lookingAtPlayer = true;
 
 
 
