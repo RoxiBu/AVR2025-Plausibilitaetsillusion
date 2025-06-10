@@ -27,11 +27,12 @@ public class Robot : MonoBehaviour
         atBioTonne,
         atTechnoTonne,
         atZeitRaumTonne,
+        atTonnen,
         inTheBack,
         center
     }
 
-    public Vector3 getCoordinates()
+    private Vector3 getCoordinates()
     {
         switch (pos)
         {
@@ -43,6 +44,8 @@ public class Robot : MonoBehaviour
                 return new Vector3(0.88f, 1.3f, 1.61f);
             case RobotPosition.atZeitRaumTonne:
                 return new Vector3(1.45f, 1.25f, 1.54f);
+            case RobotPosition.atTonnen:
+                return new Vector3(0.88f, 1.3f, 2.4f);
             case RobotPosition.inTheBack:
                 return new Vector3(1.0f, 1.15f, 7.11f);
             case RobotPosition.center:
@@ -50,6 +53,11 @@ public class Robot : MonoBehaviour
             default:
                 return Vector3.zero;
         }
+    }
+
+    public RobotPosition getPos()
+    {
+        return pos;// todo 
     }
 
     public void moveTo(RobotPosition new_pos, bool new_lookingAtPlayer)
@@ -69,8 +77,30 @@ public class Robot : MonoBehaviour
         }
     }
 
-    private RobotPosition pos = RobotPosition.center;
+    private RobotPosition pos = RobotPosition.hiddenInHallway;
     bool lookingAtPlayer = true;
+
+
+
+
+
+
+
+    public AudioSource mouth;
+
+    public void talk(AudioClip voiceline)
+    {
+        mouth.clip = voiceline;
+        mouth.Play();
+    }
+
+    public bool isTalking()
+    {
+        return mouth.isPlaying;
+    }
+
+
+
 
 
 
