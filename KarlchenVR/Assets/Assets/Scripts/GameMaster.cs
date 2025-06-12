@@ -39,6 +39,12 @@ public class GameMaster : MonoBehaviour
 
     void Update()
     {
+        if (steps.Count == 0)
+        {
+            // finished
+            return;
+        }
+
         Step current_step = steps[0];
 
         if (current_step.robotInAction != null && current_step.robotPos != null)

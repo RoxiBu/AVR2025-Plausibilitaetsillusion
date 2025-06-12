@@ -57,7 +57,7 @@ public class Robot : MonoBehaviour
 
     public RobotPosition getPos()
     {
-        return pos;// todo 
+        return pos;
     }
 
     public void moveTo(RobotPosition new_pos, bool new_lookingAtPlayer)
@@ -78,7 +78,8 @@ public class Robot : MonoBehaviour
     }
 
     private RobotPosition pos = RobotPosition.hiddenInHallway;
-    bool lookingAtPlayer = true;
+    private bool lookingAtPlayer = true;
+    public Transform playerCamera;
 
 
 
@@ -123,6 +124,12 @@ public class Robot : MonoBehaviour
             // and strength factor
             Vector3 offset = Vector3.Scale(new Vector3(x, y, z), new Vector3(0.1f, 0.2f, 0.1f));
             transform.position = getCoordinates() + offset;
+
+            // roughly look at player
+            Vector3 directionToPlayer = playerCamera.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 1.0f / 0.5f);
+
         }
     }
 }
