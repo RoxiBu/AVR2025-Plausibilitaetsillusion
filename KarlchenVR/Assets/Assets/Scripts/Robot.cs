@@ -74,12 +74,12 @@ public class Robot : MonoBehaviour
         if (behave == Behaviour.not_plausible)
         {
             // teleport instantly
-            this.transform.position = getCoordinates();
+            current_pos = getCoordinates();
+            this.transform.position = current_pos;
         }
         else
         {
-            // animate movement
-            // todo 
+            // animate movement in Update()
         }
     }
 
