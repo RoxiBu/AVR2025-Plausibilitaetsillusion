@@ -76,6 +76,14 @@ public class GameMaster : MonoBehaviour
 
 
 
+            // and wait for him to get where hes supposed to be
+            if (!current_step.robotInAction.areYouThereYet())
+            {
+                return;
+            }
+
+
+
             // if there is a item and tonne, wait until thats finished and do the voicelines
             if (current_step.item != null && current_step.tonne != null)
             {

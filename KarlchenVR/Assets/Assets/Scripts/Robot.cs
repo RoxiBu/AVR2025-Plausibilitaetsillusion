@@ -24,6 +24,8 @@ public class Robot : MonoBehaviour
     public enum RobotPosition
     {
         hiddenInHallway,
+        behindDoorInHallway,
+        inFrontOfDoor,
         atBioTonne,
         atTechnoTonne,
         atZeitRaumTonne,
@@ -38,6 +40,10 @@ public class Robot : MonoBehaviour
         {
             case RobotPosition.hiddenInHallway:
                 return new Vector3(-4.36f, 1.36f, 15.0f);
+            case RobotPosition.behindDoorInHallway:
+                return new Vector3(-4.36f, 1.06f, 7.2f);
+            case RobotPosition.inFrontOfDoor:
+                return new Vector3(-1.15f, 1.04f, 7.2f);
             case RobotPosition.atBioTonne:
                 return new Vector3(0.33f, 1.32f, 1.7f);
             case RobotPosition.atTechnoTonne:
@@ -77,8 +83,13 @@ public class Robot : MonoBehaviour
         }
     }
 
+    public bool areYouThereYet() 
+    {
+        return Vector3.Distance(current_pos, getCoordinates()) < 0.07f;
+    }
+
     private RobotPosition target_pos = RobotPosition.hiddenInHallway;
-    private bool lookingAtPlayer = true;
+    private bool lookingAtPlayer = false;
     public Transform playerCamera;
 
 
@@ -123,7 +134,7 @@ public class Robot : MonoBehaviour
             Vector3 direction_looking = Vector3.forward;
 
             // if the position isnt the desired one, move there and look in that direction
-            if (Vector3.Distance(current_pos, desired_pos) > 0.07f)
+            if (!areYouThereYet())
             {
                 //Vector3 direction = current_pos - desired_pos;
                 //current_pos = Vector3.Slerp(current_pos, desired_pos, moveSpeed * Time.deltaTime);
