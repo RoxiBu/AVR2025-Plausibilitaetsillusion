@@ -590,7 +590,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behave: 1
+  playerCamera: {fileID: 1598770568}
   mouth: {fileID: 488072080}
+  sqrMaxDistance: 0.1
+  moveSpeed: 1
+  rotationSpeed: 1
 --- !u!82 &488072078
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1310,7 +1314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   steps:
   - description: Nothing
-    robotInAction: {fileID: 488072077}
+    robotInAction: {fileID: 1894525467}
     robotPos: 0
     introductionToStep: {fileID: 0}
     item_correct: {fileID: 0}
@@ -1319,7 +1323,7 @@ MonoBehaviour:
     item: {fileID: 0}
     tonne: {fileID: 0}
   - description: Hello by the NonPlausible
-    robotInAction: {fileID: 488072077}
+    robotInAction: {fileID: 1894525467}
     robotPos: 6
     introductionToStep: {fileID: 8300000, guid: 93b2b74e2337143508b9a2566fcbdb80, type: 3}
     item_correct: {fileID: 0}
@@ -1328,7 +1332,7 @@ MonoBehaviour:
     item: {fileID: 0}
     tonne: {fileID: 0}
   - description: 'NotPlausible: Introduces Task'
-    robotInAction: {fileID: 488072077}
+    robotInAction: {fileID: 1894525467}
     robotPos: 4
     introductionToStep: {fileID: 8300000, guid: 4db446c3bddbe4206ae0c4f55254e235, type: 3}
     item_correct: {fileID: 0}
@@ -1337,7 +1341,7 @@ MonoBehaviour:
     item: {fileID: 0}
     tonne: {fileID: 0}
   - description: 'NotPlausible: Introduces BioTonne'
-    robotInAction: {fileID: 488072077}
+    robotInAction: {fileID: 1894525467}
     robotPos: 1
     introductionToStep: {fileID: 8300000, guid: 6903b1861780142cab813e5287351fea, type: 3}
     item_correct: {fileID: 0}
@@ -1346,7 +1350,7 @@ MonoBehaviour:
     item: {fileID: 0}
     tonne: {fileID: 0}
   - description: 'NotPlausible: Introduces TechnoTonne'
-    robotInAction: {fileID: 488072077}
+    robotInAction: {fileID: 1894525467}
     robotPos: 2
     introductionToStep: {fileID: 8300000, guid: 7d6e04f27ce624262afc0e26ed2cf592, type: 3}
     item_correct: {fileID: 0}
@@ -1355,7 +1359,7 @@ MonoBehaviour:
     item: {fileID: 0}
     tonne: {fileID: 0}
   - description: 'NotPlausible: Introduces ZeitRaumTonne'
-    robotInAction: {fileID: 488072077}
+    robotInAction: {fileID: 1894525467}
     robotPos: 3
     introductionToStep: {fileID: 8300000, guid: 04b38f250cac947b98167808dbec6ca8, type: 3}
     item_correct: {fileID: 0}
@@ -1364,7 +1368,7 @@ MonoBehaviour:
     item: {fileID: 0}
     tonne: {fileID: 0}
   - description: 'NotPlausible: Starts Task'
-    robotInAction: {fileID: 488072077}
+    robotInAction: {fileID: 1894525467}
     robotPos: 6
     introductionToStep: {fileID: 8300000, guid: 138c964024e814d35b493821f3241db0, type: 3}
     item_correct: {fileID: 0}
@@ -3621,7 +3625,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behave: 0
+  playerCamera: {fileID: 1598770568}
   mouth: {fileID: 1894525470}
+  sqrMaxDistance: 0.1
+  moveSpeed: 1
+  rotationSpeed: 1
 --- !u!82 &1894525468
 AudioSource:
   m_ObjectHideFlags: 0
