@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15337877, g: 0.12444736, b: 0.114977725, a: 1}
+  m_IndirectSpecularColor: {r: 0.15511169, g: 0.13047314, b: 0.12453629, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3276,8 +3276,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2510560393789101059, guid: 73a317c22ebca9f46b559c7e9b75c5be, type: 3}
+      propertyPath: m_ThrowOnDetach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2510560393789101059, guid: 73a317c22ebca9f46b559c7e9b75c5be, type: 3}
       propertyPath: m_UseDynamicAttach
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2510560393789101059, guid: 73a317c22ebca9f46b559c7e9b75c5be, type: 3}
+      propertyPath: m_ThrowVelocityScale
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2510560393789101059, guid: 73a317c22ebca9f46b559c7e9b75c5be, type: 3}
+      propertyPath: m_ThrowSmoothingDuration
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2510560393789101059, guid: 73a317c22ebca9f46b559c7e9b75c5be, type: 3}
+      propertyPath: m_ThrowAngularVelocityScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2994921928068668621, guid: 73a317c22ebca9f46b559c7e9b75c5be, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3353,7 +3369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9194758282024257709, guid: 73a317c22ebca9f46b559c7e9b75c5be, type: 3}
       propertyPath: m_Mass
-      value: 0.25
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -3561,7 +3577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9194758282024257709, guid: 73a317c22ebca9f46b559c7e9b75c5be, type: 3}
       propertyPath: m_Mass
-      value: 1.02
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
