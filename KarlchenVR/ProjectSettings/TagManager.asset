@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Boden
+  - Laserbanane
+  - Pflanze
+  - Dose
+  - Chips
+  - Zeitkapsel
   layers:
   - Default
   - TransparentFX

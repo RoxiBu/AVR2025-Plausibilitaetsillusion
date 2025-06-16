@@ -7,16 +7,13 @@ using UnityEngine;
 
 public class Tonne : MonoBehaviour
 {
-    public enum Type
-    {
-        bio,
-        technoemotionen,
-        zeitraum
+    public enum ObjectType{
+        Bio,
+        Technoemotionen,
+        Zeitraum
     }
 
-    public Type type;
-
-
+public ObjectType type;
 
     public AudioSource audioSource;
     public AudioClip itemThrownInSound;
@@ -25,14 +22,35 @@ public class Tonne : MonoBehaviour
 
 
     void OnTriggerEnter(Collider other)
-    {
+    {   
         audioSource.Play();
-        // todo - despawn the item and progress the GameMaster
+        Debug.Log(other.tag + " ist in Tonne " + type);
+
+        if(CheckIfObjectCorrect(other)){
+            Debug.Log(other.tag + " wurde korrekt einsortiert in " + type);
+            // todo - despawn the item and progress the GameMaster
+            Destroy(other.gameObject);
+        } else{
+            Debug.Log(other.tag + " wurde leider falsch einsortiert in " + type);
+        }
+        
+    }
+    
+    private bool CheckIfObjectCorrect(Collider other){
+        if ((other.CompareTag("Laserbanane") || other.CompareTag("Pflanze")) && type == ObjectType.Bio){
+            return true;
+        } else if((other.CompareTag("Dose") || other.CompareTag("Chips")) && type == ObjectType.Technoemotionen){
+            return true;
+        } else if(other.CompareTag("Zeitkapsel") && type == ObjectType.Zeitraum){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
     void Start()
-    {
+    {   
         audioSource.clip = itemThrownInSound;
     }
 
