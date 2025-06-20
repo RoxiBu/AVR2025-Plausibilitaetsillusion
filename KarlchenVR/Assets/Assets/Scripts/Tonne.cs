@@ -27,11 +27,15 @@ public ObjectType type;
         audioSource.Play();
         Debug.Log(other.tag + " ist in Tonne " + type);
 
-        if(CheckIfObjectCorrect(other)){
+        if (CheckIfObjectCorrect(other))
+        {
             Debug.Log(other.tag + " wurde korrekt einsortiert in " + type);
             gameMaster.threwItemIntoTonne(true);
-            Destroy(other.gameObject);
-        } else{
+            other.GetComponent<GrabbableObject>().ResetObject();
+            //Destroy(other.gameObject);
+        }
+        else
+        {
             gameMaster.threwItemIntoTonne(false);
             Debug.Log(other.tag + " wurde leider falsch einsortiert in " + type);
         }

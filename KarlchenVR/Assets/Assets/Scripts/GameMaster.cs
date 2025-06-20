@@ -108,15 +108,22 @@ public class GameMaster : MonoBehaviour
                 robotInAction.moveTo(robotPos, false);
             }
 
-
-
             // if the robot is talking, dont do antyhing new
             if (robotInAction.isTalking())
             {
                 return false;
             }
 
-
+            // if there is a item and tonne, wait until thats finished and do the voicelines
+            if (item != null)
+            {
+                // item spawnen, falls noch nicht geschehen
+                GrabbableObject itemGOScript = item.GetComponent<GrabbableObject>();
+                if (!itemGOScript.isInRoom())
+                {
+                    itemGOScript.putObjectOnLaufband();
+                }
+            }
 
             // if there is a starting voiceline declared, play it at the beginning
             if (introductionToStep != null)
@@ -127,26 +134,16 @@ public class GameMaster : MonoBehaviour
                 return false;
             }
 
-
+            // if there is a item and tonne, wait until thats finished and do the voicelines
+            if (item != null)
+            {
+                return false;
+            }
 
             // and wait for him to get where hes supposed to be
             if (!robotInAction.areYouThereYet())
             {
                 robotInAction.moveTo(robotPos, false);
-                return false;
-            }
-
-
-
-            // if there is a item and tonne, wait until thats finished and do the voicelines
-            if (item != null)
-            {
-                // item spawnen, falls noch nicht geschehen
-                GrabbableObject itemGOScript = item.GetComponent<GrabbableObject>();
-                if (!itemGOScript.isInRoom())
-                {
-                    itemGOScript.ResetObject();
-                }
                 return false;
             }
 
@@ -290,6 +287,109 @@ public class GameMaster : MonoBehaviour
                 .setDescription("NP geht in die Ecke")
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.inTheBack),
+
+
+
+            new Step()
+                .setDescription("P fliegt hinein 1/2")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.behindDoorInHallway),
+            new Step()
+                .setDescription("P fliegt hinein 2/2")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.inFrontOfDoor),
+            new Step()
+                .setDescription("P begrüßt den Nutzer")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.center)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_begrüßung")),
+            new Step()
+                .setDescription("P scherzt")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.center)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_begrüßung2")),
+            new Step()
+                .setDescription("P erklärt Aufgabe")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.atTonnen)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklärung")),
+            new Step()
+                .setDescription("P erklärt BioTonne")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.atBioTonne)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklärungBio")),
+            new Step()
+                .setDescription("P erklärt ZeitRaumTonne")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.atZeitRaumTonne)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklärungZeitRaum")),
+            new Step()
+                .setDescription("P erklärt TechnoTonne")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.atTechnoTonne)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklärungTechnoEmotion")),
+            new Step()
+                .setDescription("P sagt: Bereit?")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.center)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_start")),
+            new Step()
+                .setDescription("P startet Aufgabe")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.atTonnen)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_start2")),
+
+            new Step()
+                .setDescription("P wartet auf Banane")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.atTonnen)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_banane"))
+                .waitingForItem(laserBanana)
+                .toBeThrownInTonne(bioTonne)
+                .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigBanane"))
+                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschBanane")),
+            new Step()
+                .setDescription("P wartet auf EmotionsCan")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.atTonnen)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_doseEmotionen"))
+                .waitingForItem(emotionsCan)
+                .toBeThrownInTonne(technoTonne)
+                .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigDoseEmotionen"))
+                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschDoseEmotionen")),
+            new Step()
+                .setDescription("P wartet auf MagicPlant")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.atTonnen)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_pflanze"))
+                .waitingForItem(magicPlant)
+                .toBeThrownInTonne(bioTonne)
+                .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigPflanze"))
+                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschPflanze")),
+            new Step()
+                .setDescription("P wartet auf MemoryChip")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.atTonnen)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erinnerungschips"))
+                .waitingForItem(memoryChip)
+                .toBeThrownInTonne(technoTonne)
+                .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigChips"))
+                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschChips")),
+            new Step()
+                .setDescription("P wartet auf TimeCapsule")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.atTonnen)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_zeitkapsel"))
+                .waitingForItem(timeCapsule)
+                .toBeThrownInTonne(zeitraumTonne)
+                .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigZeitkapsel"))
+                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschZeitkapsel")),
+
+            new Step()
+                .setDescription("P sagt fertig")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.center)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_fertig")),
         };
     }
 

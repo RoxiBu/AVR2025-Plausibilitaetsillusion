@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class GrabbableObject : MonoBehaviour
 {
-    public Vector3 startPos;
+    public Vector3 laufbandPos;
+    private Vector3 startPos;
     private Quaternion startRot;
     private Rigidbody rigidbody;
 
     void Start()
     {
-        //startPos = transform.position;
+        startPos = transform.position;
         startRot = transform.rotation;
         rigidbody = GetComponent<Rigidbody>();
         
@@ -18,7 +19,7 @@ public class GrabbableObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other){
         if(other.CompareTag("Boden")){
-            ResetObject();
+            putObjectOnLaufband();
         }
     }
 
@@ -31,10 +32,20 @@ public class GrabbableObject : MonoBehaviour
         transform.rotation = startRot;
         rigidbody.isKinematic = false;
     }
-
-    public bool isInRoom() 
+    
+    public void putObjectOnLaufband()
     {
-        return Vector3.Distance(transform.position, startPos) < 2f;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        GetComponent<Rigidbody>().isKinematic = true;
+        transform.position = laufbandPos;
+        transform.rotation = startRot;
+        rigidbody.isKinematic = false;
+    }
+
+    public bool isInRoom()
+    {
+        return Vector3.Distance(transform.position, laufbandPos) < 3f;
     }
 
     // Update is called once per frame
