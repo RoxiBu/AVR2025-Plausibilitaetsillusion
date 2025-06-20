@@ -17,6 +17,7 @@ public ObjectType type;
 
     public AudioSource audioSource;
     public AudioClip itemThrownInSound;
+    public GameMaster gameMaster;
 
 
 
@@ -28,9 +29,10 @@ public ObjectType type;
 
         if(CheckIfObjectCorrect(other)){
             Debug.Log(other.tag + " wurde korrekt einsortiert in " + type);
-            // todo - despawn the item and progress the GameMaster
+            gameMaster.threwItemIntoTonne(true);
             Destroy(other.gameObject);
         } else{
+            gameMaster.threwItemIntoTonne(false);
             Debug.Log(other.tag + " wurde leider falsch einsortiert in " + type);
         }
         

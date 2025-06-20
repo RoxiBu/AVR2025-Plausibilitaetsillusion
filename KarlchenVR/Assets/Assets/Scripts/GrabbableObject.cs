@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GrabbableObject : MonoBehaviour
 {
-    private Vector3 startPos;
+    public Vector3 startPos;
     private Quaternion startRot;
     private Rigidbody rigidbody;
-    // Start is called before the first frame update
+
     void Start()
     {
-        startPos = transform.position;
+        //startPos = transform.position;
         startRot = transform.rotation;
         rigidbody = GetComponent<Rigidbody>();
         
@@ -22,7 +22,7 @@ public class GrabbableObject : MonoBehaviour
         }
     }
 
-    void ResetObject()
+    public void ResetObject()
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
@@ -30,6 +30,11 @@ public class GrabbableObject : MonoBehaviour
         transform.position = startPos;
         transform.rotation = startRot;
         rigidbody.isKinematic = false;
+    }
+
+    public bool isInRoom() 
+    {
+        return Vector3.Distance(transform.position, startPos) < 2f;
     }
 
     // Update is called once per frame
