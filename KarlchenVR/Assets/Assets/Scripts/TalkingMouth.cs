@@ -4,8 +4,8 @@ public class TalkingMouth : MonoBehaviour
 {
     public AudioSource audioSource;          // Die AudioSource, die Sprache abspielt
     public Transform mouthTransform;         // Das Transform des Mund-Modells
-    public float maxMovement = 0.5f;        // Wie weit der Mund sich maximal nach oben bewegt (Z-Achse)
-    public float sensitivity = 10f;         // Multiplikator für Lautstärke-Empfindlichkeit
+    public float maxMovement = 0.5f;         // Wie weit der Mund sich maximal nach oben bewegt (Y-Achse)
+    public float sensitivity = 10f;          // Multiplikator für Lautstärke-Empfindlichkeit
     public float smoothSpeed = 33f;          // Wie schnell sich der Mund bewegt
 
     private Vector3 initialLocalPosition;
@@ -31,13 +31,9 @@ public class TalkingMouth : MonoBehaviour
         float rmsValue = Mathf.Sqrt(sum / samples.Length);
         float volume = rmsValue * sensitivity;
 
-        // Begrenze die Bewegung auf maxMovement
-        float zOffset = Mathf.Clamp(volume, 0f, maxMovement);
+        float yOffset = Mathf.Clamp(volume, 0f, maxMovement);
 
-        // Zielposition berechnen
-        Vector3 targetPosition = initialLocalPosition + new Vector3(0f, 0f, -zOffset);
-
-        // Sanfte Bewegung zur Zielposition
+        Vector3 targetPosition = initialLocalPosition + new Vector3(0f, yOffset, 0f);
         mouthTransform.localPosition = Vector3.Lerp(mouthTransform.localPosition, targetPosition, Time.deltaTime * smoothSpeed);
     }
 }
