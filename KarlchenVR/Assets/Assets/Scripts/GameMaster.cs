@@ -205,27 +205,27 @@ public class GameMaster : MonoBehaviour
                 .setDescription("NP begrüßt den Nutzer")
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.center)
-                .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_begrüßung")),
+                .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_begrueßung")),
             new Step()
                 .setDescription("NP erklärt Aufgabe")
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.atTonnen)
-                .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_erklärung")),
+                .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_erklaerung")),
             new Step()
                 .setDescription("NP erklärt BioTonne")
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.atBioTonne)
-                .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_erklärung_bio")),
+                .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_erklaerung_bio")),
             new Step()
                 .setDescription("NP erklärt TechnoTonne")
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.atTechnoTonne)
-                .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_erklärung_technoemotion")),
+                .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_erklaerung_technoemotion")),
             new Step()
                 .setDescription("NP erklärt ZeitRaumTonne")
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.atZeitRaumTonne)
-                .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_erklärung_zeitraum")),
+                .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_erklaerung_zeitraum")),
             new Step()
                 .setDescription("NP sagt: Bereit?")
                 .theRobot(not_plausible_robot)
@@ -302,27 +302,27 @@ public class GameMaster : MonoBehaviour
                 .setDescription("P begrüßt den Nutzer")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.center)
-                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_begrüßung")),
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_begrueßung")),
             new Step()
                 .setDescription("P scherzt")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.center)
-                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_begrüßung2")),
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_begrueßung2")),
             new Step()
                 .setDescription("P erklärt Aufgabe")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.atTonnen)
-                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklärung")),
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklaerung")),
             new Step()
                 .setDescription("P erklärt BioTonne")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.atBioTonne)
-                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklärungBio")),
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklaerungBio")),
             new Step()
                 .setDescription("P erklärt ZeitRaumTonne")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.atZeitRaumTonne)
-                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklärungZeitRaum")),
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklaaerungZeitRaum")),
             new Step()
                 .setDescription("P erklärt TechnoTonne")
                 .theRobot(plausible_robot)
