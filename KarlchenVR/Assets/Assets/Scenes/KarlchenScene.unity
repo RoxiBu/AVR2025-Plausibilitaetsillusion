@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14842272, g: 0.1214951, b: 0.11224149, a: 1}
+  m_IndirectSpecularColor: {r: 0.19058092, g: 0.1518577, b: 0.13986169, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1822,6 +1822,11 @@ Transform:
   - {fileID: 1800618882}
   m_Father: {fileID: 916514504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &244174730 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5677357594492072811, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
+  m_PrefabInstance: {fileID: 1169301930}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &252349350 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
@@ -7056,6 +7061,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1498260256}
+    - targetCorrespondingSourceObject: {fileID: -391268320553695201, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2036389493}
+    - targetCorrespondingSourceObject: {fileID: -5824510187379060028, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1578324084}
   m_SourcePrefab: {fileID: 100100000, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
 --- !u!1001 &1177584101
 PrefabInstance:
@@ -7395,6 +7406,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8090544375414689202, guid: 73a317c22ebca9f46b559c7e9b75c5be, type: 3}
   m_PrefabInstance: {fileID: 1224346123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1266800841 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2849339999506844969, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
+  m_PrefabInstance: {fileID: 1169301930}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1269432369 stripped
 Transform:
@@ -9065,6 +9081,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0000002, y: 2.0000002, z: 0.05012617}
   m_Center: {x: -0.0000012557633, y: 0.00000014928557, z: 0.97494346}
+--- !u!1 &1578324082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5824510187379060028, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
+  m_PrefabInstance: {fileID: 1169301930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1578324084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578324082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21aedc23f2f0f8a41b3c3a067c6300d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseSpeed: 2.8
+  pulseAmount: 0.08
+  offset: 4.2
 --- !u!1001 &1579113656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9151,6 +9187,7 @@ GameObject:
   - component: {fileID: 1597845134}
   - component: {fileID: 1597845133}
   - component: {fileID: 1597845135}
+  - component: {fileID: 1597845136}
   m_Layer: 0
   m_Name: Robot2
   m_TagString: Untagged
@@ -9441,6 +9478,23 @@ MonoBehaviour:
   maxMovement: 0.2
   sensitivity: 2
   smoothSpeed: 31
+--- !u!114 &1597845136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597845127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd0dca71a207db4687c8a87e4c4111d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robot: {fileID: 1498260255}
+  leftArm: {fileID: 244174730}
+  rightArm: {fileID: 1266800841}
+  rotationStrength: 50
+  smoothSpeed: 5
 --- !u!1 &1598770567
 GameObject:
   m_ObjectHideFlags: 0
@@ -9912,7 +9966,7 @@ Transform:
   m_GameObject: {fileID: 1619691752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.565, y: 0, z: 3.745}
+  m_LocalPosition: {x: -5.903, y: 0, z: 3.745}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9952,7 +10006,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.38039216, g: 0.49411765, b: 0.9254902, a: 1}
+  m_Color: {r: 0.24719654, g: 0.5065321, b: 0.9528302, a: 1}
   m_Intensity: 0.53
   m_Range: 10
   m_SpotAngle: 30
@@ -13342,6 +13396,26 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2036389491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -391268320553695201, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
+  m_PrefabInstance: {fileID: 1169301930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2036389493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036389491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21aedc23f2f0f8a41b3c3a067c6300d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseSpeed: 2.8
+  pulseAmount: 0.08
+  offset: 4.36
 --- !u!114 &2040732675
 MonoBehaviour:
   m_ObjectHideFlags: 0
