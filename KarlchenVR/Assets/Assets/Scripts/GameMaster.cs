@@ -201,7 +201,7 @@ public class GameMaster : MonoBehaviour
 
         steps = new List<Step>
         {
-            new Step()
+          /**  new Step()
                 .setDescription("NP begrüßt den Nutzer")
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.center)
@@ -288,7 +288,7 @@ public class GameMaster : MonoBehaviour
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.inTheBack),
 
-
+            **/
 
             new Step()
                 .setDescription("P fliegt hinein 1/2")
