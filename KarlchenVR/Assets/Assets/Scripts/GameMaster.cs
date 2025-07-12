@@ -277,7 +277,7 @@ public class GameMaster : MonoBehaviour
                 .toBeThrownInTonne(zeitraumTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/NP-Roboter/np_richtigeTonne"))
                 .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/NP-Roboter/np_falschZeitkapsel")),
-
+            **/
             new Step()
                 .setDescription("NP sagt fertig")
                 .theRobot(not_plausible_robot)
@@ -288,7 +288,7 @@ public class GameMaster : MonoBehaviour
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.inTheBack),
 
-            **/
+            
 
             new Step()
                 .setDescription("P fliegt hinein 1/2")
@@ -322,12 +322,12 @@ public class GameMaster : MonoBehaviour
                 .setDescription("P erklärt ZeitRaumTonne")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.atZeitRaumTonne)
-                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklaaerungZeitRaum")),
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklaerungZeitRaum")),
             new Step()
                 .setDescription("P erklärt TechnoTonne")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.atTechnoTonne)
-                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklärungTechnoEmotion")),
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklaerungTechnoEmotion")),
             new Step()
                 .setDescription("P sagt: Bereit?")
                 .theRobot(plausible_robot)

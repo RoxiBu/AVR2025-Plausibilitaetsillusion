@@ -39,23 +39,23 @@ public class Robot : MonoBehaviour
         switch (target_pos)
         {
             case RobotPosition.hiddenInHallway:
-                return new Vector3(-4.36f, 1.36f, 15.0f);
+                return new Vector3(-4.36f, 1.06f, 15.0f);
             case RobotPosition.behindDoorInHallway:
-                return new Vector3(-4.36f, 1.06f, 7.2f);
+                return new Vector3(-4.36f, 0.76f, 7.2f);
             case RobotPosition.inFrontOfDoor:
-                return new Vector3(-1.15f, 1.04f, 7.2f);
+                return new Vector3(-1.15f, 0.74f, 7.2f);
             case RobotPosition.atBioTonne:
-                return new Vector3(0.33f, 1.32f, 1.7f);
+                return new Vector3(0.33f, 1.02f, 1.7f);
             case RobotPosition.atTechnoTonne:
-                return new Vector3(0.88f, 1.3f, 1.61f);
+                return new Vector3(0.88f, 1.0f, 1.61f);
             case RobotPosition.atZeitRaumTonne:
-                return new Vector3(1.45f, 1.25f, 1.54f);
+                return new Vector3(1.45f, 1.05f, 1.54f);
             case RobotPosition.atTonnen:
-                return new Vector3(0.88f, 1.3f, 2.4f);
+                return new Vector3(0.88f, 1.1f, 2.4f);
             case RobotPosition.inTheBack:
                 return new Vector3(1.0f, 1.15f, 7.11f);
             case RobotPosition.center:
-                return new Vector3(0.35f, 1.44f, 4.77f);
+                return new Vector3(0.35f, 1.14f, 4.77f);
             default:
                 return Vector3.zero;
         }
@@ -96,7 +96,7 @@ public class Robot : MonoBehaviour
 
 
 
-
+    public GameObject head;
 
     public AudioSource mouth;
 
@@ -118,6 +118,7 @@ public class Robot : MonoBehaviour
     private Vector3 current_pos = Vector3.zero;
     private Vector3 movement_velocity = Vector3.zero;
     private Vector3 turning_velocity = Vector3.zero;
+    private Vector3 head_turning_velocity = Vector3.zero;
 
     void Start()
     {
@@ -136,46 +137,94 @@ public class Robot : MonoBehaviour
             // if the position isnt the desired one, move there and look in that direction
             if (!areYouThereYet())
             {
-                //Vector3 direction = current_pos - desired_pos;
-                //current_pos = Vector3.Slerp(current_pos, desired_pos, moveSpeed * Time.deltaTime);
-                
                 float smoothTime = 1f;
                 float maxSpeed = 5f;
                 current_pos = Vector3.SmoothDamp(current_pos, desired_pos, ref movement_velocity, smoothTime, maxSpeed, Time.deltaTime);
-
                 direction_looking = current_pos - desired_pos;
             }
-            else // else just roughly look at player
+            else // else look at the player
             {
                 direction_looking = current_pos - playerCamera.position;
             }
 
-            // now look where youre supposed to - smoothly
             float stiffness = 10f;
             float damping = 4f;
-            Quaternion targetRotation = Quaternion.LookRotation(direction_looking);
-            Quaternion deltaRotation = targetRotation * Quaternion.Inverse(transform.rotation);
-            deltaRotation.ToAngleAxis(out float angle, out Vector3 axis);
-            if (angle > 180f) angle -= 360f;
 
-            Vector3 torque = axis.normalized * Mathf.Deg2Rad * angle * stiffness;
-            Vector3 dampingForce = turning_velocity * damping;
+            // now look where youre supposed to - smoothly
+            {
+                    Quaternion targetHeadRotation = Quaternion.LookRotation(-direction_looking);
+                    Quaternion headDeltaRotation = targetHeadRotation * Quaternion.Inverse(head.transform.rotation);
+                    headDeltaRotation.ToAngleAxis(out float headAngle, out Vector3 headAxis);
+                    if (headAngle > 180f) headAngle -= 360f;
 
-            Vector3 angularAccel = torque - dampingForce;
-            turning_velocity += angularAccel * Time.deltaTime;
+                    Vector3 headTorque = headAxis.normalized * Mathf.Deg2Rad * headAngle * stiffness;
+                    Vector3 headDamping = head_turning_velocity * damping;
+                    Vector3 headAngularAccel = headTorque - headDamping;
 
-            Quaternion deltaQuat = Quaternion.Euler(turning_velocity * Mathf.Rad2Deg * Time.deltaTime);
-            transform.rotation = deltaQuat * transform.rotation;
+                    head_turning_velocity += headAngularAccel * Time.deltaTime;
+                    Quaternion headDeltaQuat = Quaternion.Euler(head_turning_velocity * Mathf.Rad2Deg * Time.deltaTime);
+                    head.transform.rotation = headDeltaQuat * head.transform.rotation;
 
-            // and animate hovering with speed factor (time) and strength factor (Vector3.scale)
-            float time = Time.time * 0.6f;
-            float x = Mathf.PerlinNoise(time, 0.1f) - 0.5f;
-            float y = Mathf.PerlinNoise(0.1f, time) - 0.5f;
-            float z = Mathf.PerlinNoise(time, time) - 0.5f;
+                    // with a little bit of noise, so he isnt always looking the player dead in the eyes
+                    float noiseTime = Time.time * 0.7f;
+                    float nx = Mathf.PerlinNoise(noiseTime, 0.1f) - 0.5f;
+                    float ny = Mathf.PerlinNoise(0.1f, noiseTime) - 0.5f;
+                    float nz = Mathf.PerlinNoise(noiseTime, noiseTime) - 0.5f;
 
-            Vector3 offset = Vector3.Scale(new Vector3(x, y, z), new Vector3(0.1f, 0.2f, 0.1f));
-            transform.position = current_pos + offset;
-            //transform.position = current_pos;
+                    Vector3 noiseEuler = new Vector3(nx * 0.2f, ny * 0.3f, nz * 0.2f); 
+                    Quaternion noiseRotation = Quaternion.Euler(noiseEuler);
+
+                    head.transform.rotation = noiseRotation * head.transform.rotation;
+            }
+
+            // and turn the body slightly too
+            {
+                Quaternion targetBodyRotation = Quaternion.LookRotation(direction_looking);
+                Quaternion bodyDeltaRotation = targetBodyRotation * Quaternion.Inverse(transform.rotation);
+                bodyDeltaRotation.ToAngleAxis(out float bodyAngle, out Vector3 bodyAxis);
+
+                if (bodyAngle > 180f) bodyAngle -= 360f;
+
+                bodyAxis = bodyAxis.normalized;
+
+                // limit the tilt forwards when flying above
+                bodyAxis.x = Mathf.Clamp(bodyAxis.x, -0.13f, 0.13f);
+
+                // Apply partial torque for subtle body rotation
+                Vector3 bodyTorque = bodyAxis * Mathf.Deg2Rad * bodyAngle * stiffness * 0.1f;  // << 10% strength
+                Vector3 bodyDamping = turning_velocity * damping;
+                Vector3 bodyAngularAccel = bodyTorque - bodyDamping;
+
+                turning_velocity += bodyAngularAccel * Time.deltaTime;
+                Quaternion bodyDeltaQuat = Quaternion.Euler(turning_velocity * Mathf.Rad2Deg * Time.deltaTime);
+                transform.rotation = bodyDeltaQuat * transform.rotation;
+            }
+
+            // and animate hovering with speed factor (time) and strength 
+            {
+                float time = Time.time * 0.6f;
+                float x = Mathf.PerlinNoise(time, 0.1f) - 0.5f;
+                float y = Mathf.PerlinNoise(0.1f, time) - 0.5f;
+                float z = Mathf.PerlinNoise(time, time) - 0.5f;
+
+                Vector3 noiseOffset = new Vector3(x, y, z);
+                Vector3 hoverStrength = new Vector3(0.1f, 0.2f, 0.1f);
+                transform.position = current_pos + Vector3.Scale(noiseOffset, hoverStrength);
+            }
+
+        }
+        else // non-plausible robot
+        {
+            // randomly turn the head slighty
+            float noiseTime = Time.time * 0.7f;
+            float nx = Mathf.PerlinNoise(noiseTime, 0.1f) - 0.5f;
+            float ny = Mathf.PerlinNoise(0.1f, noiseTime) - 0.5f;
+            float nz = Mathf.PerlinNoise(noiseTime, noiseTime) - 0.5f;
+
+            Vector3 noiseEuler = new Vector3(nx * 0.1f, ny * 0.65f, nz * 0.1f); 
+            Quaternion noiseRotation = Quaternion.Euler(noiseEuler);
+
+            head.transform.rotation = noiseRotation * head.transform.rotation;
         }
     }
 }
