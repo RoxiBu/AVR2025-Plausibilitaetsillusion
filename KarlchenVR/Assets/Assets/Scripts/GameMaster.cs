@@ -229,7 +229,7 @@ public class GameMaster : MonoBehaviour
 
     public void next()
     {
-        if (steps[0].doIt())
+        if (steps.Count > 0 && steps[0].doIt())
         {
             steps.RemoveAt(0);
         }
@@ -468,9 +468,18 @@ public class GameMaster : MonoBehaviour
         };
     }
 
+
+    // only do checks every 700ms
+    float nextStepTime = 0f;
+    float stepDelay = 0.7f;
+
     void Update()
     {
-        next();
+        if (Time.time >= nextStepTime)
+        {
+            next();
+            nextStepTime = Time.time + stepDelay;
+        }
     }
 }
 
