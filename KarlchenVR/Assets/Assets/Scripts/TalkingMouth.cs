@@ -5,7 +5,7 @@ public class TalkingMouth : MonoBehaviour
     public AudioSource audioSource;          // Die AudioSource, die Sprache abspielt
     public Transform mouthTransform;         // Das Transform des Mund-Modells
     public float maxMovement = 0.5f;         // Wie weit der Mund sich maximal nach oben bewegt (Y-Achse)
-    public float sensitivity = 10f;          // Multiplikator für Lautstärke-Empfindlichkeit
+    public float sensitivity = 10f;          // Multiplikator fï¿½r Lautstï¿½rke-Empfindlichkeit
     public float smoothSpeed = 33f;          // Wie schnell sich der Mund bewegt
 
     private Vector3 initialLocalPosition;

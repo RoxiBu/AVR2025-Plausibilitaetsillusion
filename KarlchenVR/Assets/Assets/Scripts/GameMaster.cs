@@ -267,7 +267,7 @@ public class GameMaster : MonoBehaviour
 
         steps = new List<Step>
         {
-          /**  new Step(this)
+            /*new Step(this)
                 .setDescription("NP begrüßt den Nutzer")
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.center)
@@ -353,7 +353,7 @@ public class GameMaster : MonoBehaviour
                 .setDescription("NP geht in die Ecke")
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.inTheBack),
-
+            */
 
 
             new Step(this)
@@ -453,7 +453,7 @@ public class GameMaster : MonoBehaviour
                 .toBeThrownInTonne(zeitraumTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigZeitkapsel"))
                 .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschZeitkapsel")),
-**/
+
             new Step(this)
                 .setDescription("P sagt fertig")
                 .theRobot(plausible_robot)
