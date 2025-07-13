@@ -33,6 +33,8 @@ public class GameMaster : MonoBehaviour
         private GameObject tonne = null; // ist quasi unnötig im Moment
         private int timesThrewWrong = 0;
 
+        private string websiteToOpenAfter = null;
+
         // setter
         public Step setDescription(string desc)
         {
@@ -103,6 +105,12 @@ public class GameMaster : MonoBehaviour
             }
 
             this.timesThrewWrong++;
+            return this;
+        }
+
+        public Step openWebpageAfter(string url)
+        {
+            this.websiteToOpenAfter = url;
             return this;
         }
 
@@ -191,6 +199,13 @@ public class GameMaster : MonoBehaviour
                 {
                     Debug.LogError("timelineDirector ist null im GameMaster!");
                 }
+            }
+
+            if (websiteToOpenAfter != null)
+            {
+                Application.OpenURL(websiteToOpenAfter);
+                websiteToOpenAfter = null;
+                //Application.Quit();
             }
 
             // Step ist fertig
@@ -328,7 +343,7 @@ public class GameMaster : MonoBehaviour
                 .toBeThrownInTonne(zeitraumTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/NP-Roboter/np_richtigeTonne"))
                 .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/NP-Roboter/np_falschZeitkapsel")),
-            **/
+            
             new Step(this)
                 .setDescription("NP sagt fertig")
                 .theRobot(not_plausible_robot)
@@ -428,6 +443,7 @@ public class GameMaster : MonoBehaviour
                 .toBeThrownInTonne(technoTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigChips"))
                 .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschChips")),
+                
             new Step(this)
                 .setDescription("P wartet auf TimeCapsule")
                 .theRobot(plausible_robot)
@@ -437,12 +453,18 @@ public class GameMaster : MonoBehaviour
                 .toBeThrownInTonne(zeitraumTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigZeitkapsel"))
                 .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschZeitkapsel")),
-
+**/
             new Step(this)
                 .setDescription("P sagt fertig")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.center)
-                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_fertig"))
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_fertig")),
+
+            new Step(this)
+                .setDescription("Umfrage öffnen")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.center)
+                .openWebpageAfter("https://maikbartelsth.limesurvey.net/451547?lang=de")
         };
     }
 

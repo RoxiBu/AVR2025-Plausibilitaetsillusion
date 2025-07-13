@@ -6,7 +6,7 @@ public class ArmIdleAnimation : MonoBehaviour
     public Transform leftArm;        // Linker Arm
     public Transform rightArm;       // Rechter Arm
 
-    public float rotationStrength = 10f;  // Maximaler Rotationswinkel in Grad
+    public float rotationStrength = 5f;  // Maximaler Rotationswinkel in Grad
     public float smoothSpeed = 5f;        // Wie weich die Bewegung sein soll
 
     private float previousY;
@@ -25,7 +25,7 @@ public class ArmIdleAnimation : MonoBehaviour
         float currentY = robot.position.y;
         float deltaY = currentY - previousY;
 
-        // Berechne Zielrotation basierend auf Y-Änderung (Steigen oder Fallen)
+        // Berechne Zielrotation basierend auf Y-ï¿½nderung (Steigen oder Fallen)
         float targetRotation = Mathf.Clamp(deltaY * rotationStrength * 100f, -rotationStrength, rotationStrength);
 
         // Weiches Interpolieren der Rotation

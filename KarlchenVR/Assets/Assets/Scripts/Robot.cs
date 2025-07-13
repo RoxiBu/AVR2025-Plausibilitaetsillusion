@@ -150,55 +150,28 @@ public class Robot : MonoBehaviour
             float stiffness = 10f;
             float damping = 4f;
 
-            // now look where youre supposed to - smoothly
             {
-                    Quaternion targetHeadRotation = Quaternion.LookRotation(-direction_looking);
-                    Quaternion headDeltaRotation = targetHeadRotation * Quaternion.Inverse(head.transform.rotation);
-                    headDeltaRotation.ToAngleAxis(out float headAngle, out Vector3 headAxis);
-                    if (headAngle > 180f) headAngle -= 360f;
+                // now look where youre supposed to - smoothly
+                Quaternion targetRotation = Quaternion.LookRotation(-direction_looking);
+                Quaternion deltaRotation = targetRotation * Quaternion.Inverse(head.transform.rotation);
+                deltaRotation.ToAngleAxis(out float headAngle, out Vector3 headAxis);
+                if (headAngle > 180f) headAngle -= 360f;
 
-                    Vector3 headTorque = headAxis.normalized * Mathf.Deg2Rad * headAngle * stiffness;
-                    Vector3 headDamping = head_turning_velocity * damping;
-                    Vector3 headAngularAccel = headTorque - headDamping;
+                Vector3 headTorque = headAxis.normalized * Mathf.Deg2Rad * headAngle * stiffness;
+                Vector3 headDamping = head_turning_velocity * damping;
+                Vector3 headAngularAccel = headTorque - headDamping;
 
-                    head_turning_velocity += headAngularAccel * Time.deltaTime;
-                    Quaternion headDeltaQuat = Quaternion.Euler(head_turning_velocity * Mathf.Rad2Deg * Time.deltaTime);
-                    head.transform.rotation = headDeltaQuat * head.transform.rotation;
+                head_turning_velocity += headAngularAccel * Time.deltaTime;
+                Quaternion deltaQuat = Quaternion.Euler(head_turning_velocity * Mathf.Rad2Deg * Time.deltaTime);
+                head.transform.rotation = deltaQuat * head.transform.rotation;
 
-                    // with a little bit of noise, so he isnt always looking the player dead in the eyes
-                    float noiseTime = Time.time * 0.7f;
-                    float nx = Mathf.PerlinNoise(noiseTime, 0.1f) - 0.5f;
-                    float ny = Mathf.PerlinNoise(0.1f, noiseTime) - 0.5f;
-                    float nz = Mathf.PerlinNoise(noiseTime, noiseTime) - 0.5f;
-
-                    Vector3 noiseEuler = new Vector3(nx * 0.2f, ny * 0.3f, nz * 0.2f); 
-                    Quaternion noiseRotation = Quaternion.Euler(noiseEuler);
-
-                    head.transform.rotation = noiseRotation * head.transform.rotation;
+                // and turn the body slightly too
+                deltaQuat.x = 0f;
+                deltaQuat.y *= 0.7f;
+                deltaQuat.z *= 0.7f;
+                transform.rotation = deltaQuat * transform.rotation;
             }
 
-            // and turn the body slightly too
-            {
-                Quaternion targetBodyRotation = Quaternion.LookRotation(direction_looking);
-                Quaternion bodyDeltaRotation = targetBodyRotation * Quaternion.Inverse(transform.rotation);
-                bodyDeltaRotation.ToAngleAxis(out float bodyAngle, out Vector3 bodyAxis);
-
-                if (bodyAngle > 180f) bodyAngle -= 360f;
-
-                bodyAxis = bodyAxis.normalized;
-
-                // limit the tilt forwards when flying above
-                bodyAxis.x = Mathf.Clamp(bodyAxis.x, -0.13f, 0.13f);
-
-                // Apply partial torque for subtle body rotation
-                Vector3 bodyTorque = bodyAxis * Mathf.Deg2Rad * bodyAngle * stiffness * 0.1f;  // << 10% strength
-                Vector3 bodyDamping = turning_velocity * damping;
-                Vector3 bodyAngularAccel = bodyTorque - bodyDamping;
-
-                turning_velocity += bodyAngularAccel * Time.deltaTime;
-                Quaternion bodyDeltaQuat = Quaternion.Euler(turning_velocity * Mathf.Rad2Deg * Time.deltaTime);
-                transform.rotation = bodyDeltaQuat * transform.rotation;
-            }
 
             // and animate hovering with speed factor (time) and strength 
             {
@@ -214,17 +187,22 @@ public class Robot : MonoBehaviour
 
         }
         else // non-plausible robot
-        {
-            // randomly turn the head slighty
-            float noiseTime = Time.time * 0.7f;
-            float nx = Mathf.PerlinNoise(noiseTime, 0.1f) - 0.5f;
-            float ny = Mathf.PerlinNoise(0.1f, noiseTime) - 0.5f;
-            float nz = Mathf.PerlinNoise(noiseTime, noiseTime) - 0.5f;
-
-            Vector3 noiseEuler = new Vector3(nx * 0.1f, ny * 0.65f, nz * 0.1f); 
-            Quaternion noiseRotation = Quaternion.Euler(noiseEuler);
-
-            head.transform.rotation = noiseRotation * head.transform.rotation;
+        { 
+            
         }
+       
+       
+        //bot Robots:
+        // randomly turn the head slighty
+        /*float noiseTime = Time.time * 0.7f;
+        float nx = Mathf.PerlinNoise(noiseTime, 0.1f) - 0.5f;
+        float ny = Mathf.PerlinNoise(0.1f, noiseTime) - 0.5f;
+        float nz = Mathf.PerlinNoise(noiseTime, noiseTime) - 0.5f;
+
+        Vector3 noiseEuler = new Vector3(nx * 0.1f, ny * 0.65f, nz * 0.1f); 
+        Quaternion noiseRotation = Quaternion.Euler(noiseEuler);
+
+        head.transform.rotation = noiseRotation * head.transform.rotation;
+        */
     }
 }
