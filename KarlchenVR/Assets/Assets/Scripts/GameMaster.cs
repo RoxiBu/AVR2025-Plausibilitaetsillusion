@@ -189,16 +189,10 @@ public class GameMaster : MonoBehaviour
             // Timeline auch abspielen, falls noch nicht geschehen und keine VoiceLine zum Starten war
             if (timeline != null && !hasPlayedTimeline)
             {
-                if (gameMaster.timelineDirector != null)
-                {
-                    gameMaster.timelineDirector.playableAsset = timeline;
-                    gameMaster.timelineDirector.Play();
-                    hasPlayedTimeline = true;
-                }
-                else
-                {
-                    Debug.LogError("timelineDirector ist null im GameMaster!");
-                }
+                Debug.Log("Starte Timeline: " + timeline.name);
+                gameMaster.timelineDirector.playableAsset = timeline;
+                gameMaster.timelineDirector.Play();
+                hasPlayedTimeline = true;
             }
 
             if (websiteToOpenAfter != null)
@@ -369,23 +363,25 @@ public class GameMaster : MonoBehaviour
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.center)
                 .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_begrueßung"))
-                .withTimeline(Resources.Load<TimelineAsset>("Timeline/p_begrueßungTimeline")),
+                .withTimeline(Resources.Load<TimelineAsset>("Timeline/begrueßungTimeline")),
             new Step(this)
                 .setDescription("P scherzt")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.center)
-                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_begrueßung2")),
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_begrueßung2"))
+                .withTimeline(Resources.Load<TimelineAsset>("Timeline/begrueßung2Timeline")),
             new Step(this)
                 .setDescription("P erklärt Aufgabe")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.atTonnen)
                 .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklaerung"))
-                .withTimeline(Resources.Load<TimelineAsset>("Timeline/p_erklaerungTimeline")),
+                .withTimeline(Resources.Load<TimelineAsset>("Timeline/erklaerungTimeline")),
             new Step(this)
                 .setDescription("P erklärt BioTonne")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.atBioTonne)
-                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklaerungBio")),
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_erklaerungBio"))
+                .withTimeline(Resources.Load<TimelineAsset>("Timeline/erklaerungBioTimeline")),
             new Step(this)
                 .setDescription("P erklärt ZeitRaumTonne")
                 .theRobot(plausible_robot)
@@ -458,7 +454,8 @@ public class GameMaster : MonoBehaviour
                 .setDescription("P sagt fertig")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.center)
-                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_fertig")),
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_fertig"))
+                .withTimeline(Resources.Load<TimelineAsset>("Timeline/fertigTimeline")),
 
             new Step(this)
                 .setDescription("Umfrage öffnen")
