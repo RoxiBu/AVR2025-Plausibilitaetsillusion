@@ -327,7 +327,7 @@ public class GameMaster : MonoBehaviour
 
         steps = new List<Step>
         {
-            /*new Step(this)
+            new Step(this)
                 .setDescription("NP begrüßt den Nutzer nach 10s Wartezeit")
                 .sleep(10)
                 .theRobot(not_plausible_robot)
@@ -420,7 +420,7 @@ public class GameMaster : MonoBehaviour
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.hiddenInHallway),
 
-*/
+
 
             new Step(this)
                 .setDescription("P fliegt hinein 1/2")
