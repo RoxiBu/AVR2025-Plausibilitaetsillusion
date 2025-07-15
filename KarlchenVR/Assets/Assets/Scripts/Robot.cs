@@ -140,11 +140,13 @@ public class Robot : MonoBehaviour
                 float smoothTime = 1f;
                 float maxSpeed = 5f;
                 current_pos = Vector3.SmoothDamp(current_pos, desired_pos, ref movement_velocity, smoothTime, maxSpeed, Time.deltaTime);
-                direction_looking = current_pos - desired_pos;
+                direction_looking = desired_pos - current_pos;
             }
             else // else look at the player
             {
-                direction_looking = current_pos - playerCamera.position;
+                Vector3 playerPos = playerCamera.position;
+                playerPos.y -= 0.8f;
+                direction_looking = playerPos - head.transform.position;
             }
 
             float stiffness = 10f;
@@ -152,23 +154,24 @@ public class Robot : MonoBehaviour
 
             {
                 // now look where youre supposed to - smoothly
-                Quaternion targetRotation = Quaternion.LookRotation(-direction_looking);
+                Quaternion targetRotation = Quaternion.LookRotation(direction_looking);
                 Quaternion deltaRotation = targetRotation * Quaternion.Inverse(head.transform.rotation);
-                deltaRotation.ToAngleAxis(out float headAngle, out Vector3 headAxis);
-                if (headAngle > 180f) headAngle -= 360f;
+                deltaRotation.ToAngleAxis(out float angle, out Vector3 axis);
+                if (angle > 180f) angle -= 360f;
 
-                Vector3 headTorque = headAxis.normalized * Mathf.Deg2Rad * headAngle * stiffness;
-                Vector3 headDamping = head_turning_velocity * damping;
-                Vector3 headAngularAccel = headTorque - headDamping;
+                Vector3 torque = axis.normalized * Mathf.Deg2Rad * angle * stiffness;
+                Vector3 dampingForce = turning_velocity * damping;
 
-                head_turning_velocity += headAngularAccel * Time.deltaTime;
-                Quaternion deltaQuat = Quaternion.Euler(head_turning_velocity * Mathf.Rad2Deg * Time.deltaTime);
+                Vector3 angularAccel = torque - dampingForce;
+                turning_velocity += angularAccel * Time.deltaTime;
+
+                Quaternion deltaQuat = Quaternion.Euler(turning_velocity * Mathf.Rad2Deg * Time.deltaTime);
                 head.transform.rotation = deltaQuat * head.transform.rotation;
 
                 // and turn the body slightly too
-                deltaQuat.x = 0f;
+                deltaQuat.x *= 0.2f;
                 deltaQuat.y *= 0.7f;
-                deltaQuat.z *= 0.7f;
+                deltaQuat.z *= 0.2f;
                 transform.rotation = deltaQuat * transform.rotation;
             }
 
