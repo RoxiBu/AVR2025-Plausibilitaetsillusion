@@ -23,6 +23,17 @@ public class GrabbableObject : MonoBehaviour
         }
     }
 
+
+    public AudioSource spawnSound;
+    public void playSpawnSound()
+    {
+        if (spawnSound != null)
+        {
+            spawnSound.pitch = Random.Range(0.8f, 1.2f);
+            spawnSound.Play();
+        }
+    }
+
     public void ResetObject()
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -32,7 +43,7 @@ public class GrabbableObject : MonoBehaviour
         transform.rotation = startRot;
         rigidbody.isKinematic = false;
     }
-    
+
     public void putObjectOnLaufband()
     {
         Debug.Log("Objekt auf Laufband gelegt");
@@ -42,6 +53,7 @@ public class GrabbableObject : MonoBehaviour
         transform.position = laufbandPos;
         transform.rotation = startRot;
         rigidbody.isKinematic = false;
+        playSpawnSound();
     }
 
     public bool isInRoom()
