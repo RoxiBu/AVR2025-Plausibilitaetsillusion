@@ -18,6 +18,8 @@ public class GameMaster : MonoBehaviour
 
         private string description;
 
+        private float sleepingTime = 0;
+
         private Robot robotInAction;
         private Robot.RobotPosition robotPos;
 
@@ -39,6 +41,12 @@ public class GameMaster : MonoBehaviour
         public Step setDescription(string desc)
         {
             this.description = desc;
+            return this;
+        }
+
+        public Step sleep(float timeInS)
+        {
+            this.sleepingTime = timeInS;
             return this;
         }
 
@@ -128,11 +136,18 @@ public class GameMaster : MonoBehaviour
 
         public bool doIt()
         {
+            if (sleepingTime > 0) 
+            {
+                sleepingTime -= 0.7f; // the step delay
+                return false;
+            }
+            
+
             // Positionieren des Roboters
             if (robotPos != robotInAction.getPos())
-            {
-                robotInAction.moveTo(robotPos, false);
-            }
+                {
+                    robotInAction.moveTo(robotPos, false);
+                }
 
             // Wenn der Roboter redet, warte
             if (robotInAction.isTalking())
@@ -261,8 +276,9 @@ public class GameMaster : MonoBehaviour
 
         steps = new List<Step>
         {
-            /*new Step(this)
-                .setDescription("NP begrüßt den Nutzer")
+            new Step(this)
+                .setDescription("NP begrüßt den Nutzer nach 10s Wartezeit")
+                .sleep(10)
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.center)
                 .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_begrueßung")),
@@ -444,7 +460,7 @@ public class GameMaster : MonoBehaviour
                 .toBeThrownInTonne(technoTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigChips"))
                 .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschChips")),
-            */
+            
             new Step(this)
                 .setDescription("P wartet auf TimeCapsule")
                 .theRobot(plausible_robot)
@@ -487,7 +503,7 @@ public class GameMaster : MonoBehaviour
 
     // only do checks every 700ms
     float nextStepTime = 0f;
-    float stepDelay = 0.7f;
+    float stepDelay = 0.7f; // when you change this, you need to change it in doIt() too, srry for the bad code
 
     void Update()
     {
