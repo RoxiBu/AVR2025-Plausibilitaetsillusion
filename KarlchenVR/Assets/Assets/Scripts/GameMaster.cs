@@ -20,6 +20,9 @@ public class GameMaster : MonoBehaviour
 
         private float sleepingTime = 0;
 
+        private float afkTime = 0;
+        private AudioClip afk = null;
+
         private Robot robotInAction;
         private Robot.RobotPosition robotPos;
 
@@ -92,6 +95,13 @@ public class GameMaster : MonoBehaviour
             return this;
         }
 
+        public Step saysIfPlayerIsAFKfor(AudioClip clip, float timeInS)
+        {
+            this.afk = clip;
+            this.afkTime = timeInS;
+            return this;
+        }
+
         public Step threwInRight()
         {
             if (item_correct != null)
@@ -155,24 +165,46 @@ public class GameMaster : MonoBehaviour
 
         public bool doIt()
         {
-            if (sleepingTime > 0) 
+            // Vorher sleepen
+            if (sleepingTime > 0)
             {
                 sleepingTime -= 0.7f; // the step delay
                 return false;
             }
-            
+
+
 
             // Positionieren des Roboters
             if (robotPos != robotInAction.getPos())
-                {
-                    robotInAction.moveTo(robotPos, false);
-                }
+            {
+                robotInAction.moveTo(robotPos, false);
+            }
 
             // Wenn der Roboter redet, warte
             if (robotInAction.isTalking())
             {
                 return false;
             }
+
+
+
+            
+
+            // Checken, ob Player zu lange gewartet hat. Dann AFK Voiceline abspielen
+            if (afk != null)
+            {
+                if (afkTime > 0)
+                {
+                    afkTime -= 0.7f; // the step delay, srry again
+                }
+                else
+                {
+                    robotInAction.talk(afk);
+                    afk = null;
+                }
+            }
+
+            
 
             // Item-Spawn-Logik
             if (item != null)
@@ -451,7 +483,8 @@ public class GameMaster : MonoBehaviour
                 .waitingForItem(laserBanana)
                 .toBeThrownInTonne(bioTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigBanane"))
-                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschBanane")),
+                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschBanane"))
+                .saysIfPlayerIsAFKfor(Resources.Load<AudioClip>("Audio/P-Roboter/p_afk"), 20f),
             new Step(this)
                 .setDescription("P wartet auf EmotionsCan")
                 .theRobot(plausible_robot)
@@ -460,7 +493,8 @@ public class GameMaster : MonoBehaviour
                 .waitingForItem(emotionsCan)
                 .toBeThrownInTonne(technoTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigDoseEmotionen"))
-                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschDoseEmotionen")),
+                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschDoseEmotionen"))
+                .saysIfPlayerIsAFKfor(Resources.Load<AudioClip>("Audio/P-Roboter/p_afk_2"), 15f),
             new Step(this)
                 .setDescription("P wartet auf MagicPlant")
                 .theRobot(plausible_robot)
@@ -469,7 +503,8 @@ public class GameMaster : MonoBehaviour
                 .waitingForItem(magicPlant)
                 .toBeThrownInTonne(bioTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigPflanze"))
-                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschPflanze")),
+                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschPflanze"))
+                .saysIfPlayerIsAFKfor(Resources.Load<AudioClip>("Audio/P-Roboter/p_afk"), 25f),
             new Step(this)
                 .setDescription("P wartet auf MemoryChip")
                 .theRobot(plausible_robot)
@@ -478,8 +513,8 @@ public class GameMaster : MonoBehaviour
                 .waitingForItem(memoryChip)
                 .toBeThrownInTonne(technoTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigChips"))
-                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschChips")),
-            
+                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschChips"))
+                .saysIfPlayerIsAFKfor(Resources.Load<AudioClip>("Audio/P-Roboter/p_afk_2"), 30f),
             new Step(this)
                 .setDescription("P wartet auf TimeCapsule")
                 .theRobot(plausible_robot)
@@ -488,7 +523,8 @@ public class GameMaster : MonoBehaviour
                 .waitingForItem(timeCapsule)
                 .toBeThrownInTonne(zeitraumTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigZeitkapsel"))
-                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschZeitkapsel")),
+                .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschZeitkapsel"))
+                .saysIfPlayerIsAFKfor(Resources.Load<AudioClip>("Audio/P-Roboter/p_afk"), 35f),
 
             new Step(this)
                 .setDescription("P sagt fertig")
