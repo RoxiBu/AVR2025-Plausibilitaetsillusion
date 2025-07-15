@@ -35,6 +35,7 @@ public class GrabbableObject : MonoBehaviour
     
     public void putObjectOnLaufband()
     {
+        Debug.Log("Objekt auf Laufband gelegt");
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         GetComponent<Rigidbody>().isKinematic = true;
@@ -45,7 +46,7 @@ public class GrabbableObject : MonoBehaviour
 
     public bool isInRoom()
     {
-        return Vector3.Distance(transform.position, laufbandPos) < 3f;
+        return Vector3.Distance(transform.position, laufbandPos) < 6f;
     }
 
     // Update is called once per frame
