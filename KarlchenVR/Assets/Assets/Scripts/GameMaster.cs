@@ -111,8 +111,27 @@ public class GameMaster : MonoBehaviour
                 robotInAction.talk(item_wrong);
                 item_wrong = null;
             }
+            else if (timesThrewWrong <= 1 && robotInAction.behave == Robot.Behaviour.plausible) 
+            {
+                List<string> wrongVoicelines = new List<string> { "p_falsch_1", "p_falsch_2" };
+                string randomVoiceline = wrongVoicelines[Random.Range(0, wrongVoicelines.Count)];
+                AudioClip randomVoicelineSound = Resources.Load<AudioClip>("Audio/P-Roboter/" + randomVoiceline);
+                if (randomVoicelineSound != null)
+                {
+                    robotInAction.talk(randomVoicelineSound);
+                }
+            } else if (timesThrewWrong <= 2 && robotInAction.behave == Robot.Behaviour.plausible) 
+            {
+                List<string> wrongVoicelines = new List<string> { "p_falsch2_1", "p_falsch2_2", "p_falsch2_3" };
+                string randomVoiceline = wrongVoicelines[Random.Range(0, wrongVoicelines.Count)];
+                AudioClip randomVoicelineSound = Resources.Load<AudioClip>("Audio/P-Roboter/" + randomVoiceline);
+                if (randomVoicelineSound != null)
+                {
+                    robotInAction.talk(randomVoicelineSound);
+                }
+            }
 
-            this.timesThrewWrong++;
+            timesThrewWrong += 1;
             return this;
         }
 
@@ -276,7 +295,7 @@ public class GameMaster : MonoBehaviour
 
         steps = new List<Step>
         {
-            new Step(this)
+            /*new Step(this)
                 .setDescription("NP begrüßt den Nutzer nach 10s Wartezeit")
                 .sleep(10)
                 .theRobot(not_plausible_robot)
@@ -369,7 +388,7 @@ public class GameMaster : MonoBehaviour
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.hiddenInHallway),
 
-
+*/
 
             new Step(this)
                 .setDescription("P fliegt hinein 1/2")
