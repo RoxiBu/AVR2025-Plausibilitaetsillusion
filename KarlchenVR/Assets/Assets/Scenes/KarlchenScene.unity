@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.20347598, g: 0.16207485, b: 0.14878489, a: 1}
+  m_IndirectSpecularColor: {r: 0.17148782, g: 0.14739816, b: 0.1394683, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -751,15 +751,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3553,8 +3553,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 3
-  MaxDistance: 10
+  MinDistance: 9
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -7999,15 +7999,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f6e6afb8dd4e8642927413438f5d45c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10721,8 +10721,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 3
-  MaxDistance: 10
+  MinDistance: 9
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -10732,23 +10732,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.5
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -6.4427757
+      outSlope: -6.4427757
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.087649465
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

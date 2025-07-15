@@ -338,16 +338,21 @@ public class GameMaster : MonoBehaviour
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/NP-Roboter/np_richtigeTonne"))
                 .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/NP-Roboter/np_falschZeitkapsel")),
             
+            //new Step(this)
+            //    .setDescription("NP spricht Umfrage an")
+            //    .theRobot(not_plausible_robot)
+            //    .isHere(Robot.RobotPosition.center)
+            //    .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_umfrage")),
             new Step(this)
                 .setDescription("NP sagt fertig")
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.center)
                 .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_fertig")),
             new Step(this)
-                .setDescription("NP geht in die Ecke")
+                .setDescription("NP teleportiert weg")
                 .theRobot(not_plausible_robot)
-                .isHere(Robot.RobotPosition.inTheBack),
-            */
+                .isHere(Robot.RobotPosition.hiddenInHallway),
+
 
 
             new Step(this)
@@ -439,7 +444,7 @@ public class GameMaster : MonoBehaviour
                 .toBeThrownInTonne(technoTonne)
                 .saysOnCorrectTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_richtigChips"))
                 .saysOnWrongTonne(Resources.Load<AudioClip>("Audio/P-Roboter/p_falschChips")),
-                
+            */
             new Step(this)
                 .setDescription("P wartet auf TimeCapsule")
                 .theRobot(plausible_robot)
@@ -456,11 +461,25 @@ public class GameMaster : MonoBehaviour
                 .isHere(Robot.RobotPosition.center)
                 .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_fertig"))
                 .withTimeline(Resources.Load<TimelineAsset>("Timeline/fertigTimeline")),
+            new Step(this)
+                .setDescription("Roboter erklärt Umfrage und verabschiedet sich")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.inTheBack)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_umfrage_verabschiedung")),
 
             new Step(this)
-                .setDescription("Umfrage öffnen")
+                .setDescription("P fliegt heraus 1/2")
                 .theRobot(plausible_robot)
-                .isHere(Robot.RobotPosition.center)
+                .isHere(Robot.RobotPosition.inFrontOfDoor)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_geht")),
+            new Step(this)
+                .setDescription("P fliegt heraus 2/2")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.behindDoorInHallway),
+            new Step(this)
+                .setDescription("P fliegt weg")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.hiddenInHallway)
                 .openWebpageAfter("https://maikbartelsth.limesurvey.net/451547?lang=de")
         };
     }
