@@ -20,6 +20,8 @@ public class GameMaster : MonoBehaviour
 
         private float sleepingTime = 0;
 
+        private AudioSource audioToTrigger = null;
+
         private float afkTime = 0;
         private AudioClip afk = null;
 
@@ -50,6 +52,12 @@ public class GameMaster : MonoBehaviour
         public Step sleep(float timeInS)
         {
             this.sleepingTime = timeInS;
+            return this;
+        }
+
+        public Step trigger(AudioSource audio)
+        {
+            this.audioToTrigger = audio;
             return this;
         }
 
@@ -165,14 +173,18 @@ public class GameMaster : MonoBehaviour
 
         public bool doIt()
         {
+            if (audioToTrigger != null)
+            {
+                audioToTrigger.Play();
+                audioToTrigger = null;
+            }
+
             // Vorher sleepen
             if (sleepingTime > 0)
             {
                 sleepingTime -= 0.7f; // the step delay
                 return false;
             }
-
-
 
             // Positionieren des Roboters
             if (robotPos != robotInAction.getPos())
@@ -308,18 +320,21 @@ public class GameMaster : MonoBehaviour
     public GameObject bioTonne;
     public GameObject technoTonne;
     public GameObject zeitraumTonne;
+    
+    public AudioSource first_explosion;
+    public AudioSource second_explosion;
 
 
     private void Awake()
     {
-            if (timelineDirector == null)
-            {
-                timelineDirector = GetComponent<PlayableDirector>();
-            }
-            if (timelineDirector == null)
-            {
-                Debug.LogError("Kein PlayableDirector am GameMaster gefunden! Bitte fügen Sie einen hinzu.");
-            }
+        if (timelineDirector == null)
+        {
+            timelineDirector = GetComponent<PlayableDirector>();
+        }
+        if (timelineDirector == null)
+        {
+            Debug.LogError("Kein PlayableDirector am GameMaster gefunden! Bitte fügen Sie einen hinzu.");
+        }
     }
 
     void Start()
@@ -353,6 +368,11 @@ public class GameMaster : MonoBehaviour
                 .theRobot(not_plausible_robot)
                 .isHere(Robot.RobotPosition.atZeitRaumTonne)
                 .saying(Resources.Load<AudioClip>("Audio/NP-Roboter/np_erklaerung_zeitraum")),
+            new Step(this)
+                .setDescription("NP tut nichts während lautem Knall")
+                .theRobot(not_plausible_robot)
+                .isHere(Robot.RobotPosition.atTonnen)
+                .trigger(first_explosion),
             new Step(this)
                 .setDescription("NP sagt: Bereit?")
                 .theRobot(not_plausible_robot)
@@ -437,7 +457,7 @@ public class GameMaster : MonoBehaviour
                 .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_begrueßung"))
                 .withTimeline(Resources.Load<TimelineAsset>("Timeline/begrueßungTimeline")),
             new Step(this)
-                .setDescription("P scherzt")
+                .setDescription("P scherzt über NP")
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.center)
                 .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_begrueßung2"))
@@ -469,6 +489,12 @@ public class GameMaster : MonoBehaviour
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.center)
                 .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_start")),
+            new Step(this)
+                .setDescription("P erschreckt sich wegen lautem knall")
+                .theRobot(plausible_robot)
+                .isHere(Robot.RobotPosition.inTheBack)
+                .trigger(second_explosion)
+                .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_explosion_reaktion")),
             new Step(this)
                 .setDescription("P startet Aufgabe")
                 .theRobot(plausible_robot)
