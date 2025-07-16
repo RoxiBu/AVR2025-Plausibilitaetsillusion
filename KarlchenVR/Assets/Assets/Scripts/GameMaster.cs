@@ -494,6 +494,7 @@ public class GameMaster : MonoBehaviour
                 .theRobot(plausible_robot)
                 .isHere(Robot.RobotPosition.inTheBack)
                 .trigger(second_explosion)
+                .sleep(0.3f)
                 .saying(Resources.Load<AudioClip>("Audio/P-Roboter/p_explosion_reaktion")),
             new Step(this)
                 .setDescription("P startet Aufgabe")
